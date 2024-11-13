@@ -1,0 +1,78 @@
+#include <iostream>
+using namespace std;
+
+#define MAX 5  
+
+class Stack {
+private:
+    int arr[MAX];
+    int top;
+
+public:
+    Stack() { top = -1; } 
+
+    void push(int value) {
+        if (top >= MAX - 1) {
+            cout << "Stack Overflow\n";
+        } else {
+            arr[++top] = value;
+            cout << value << " pushed onto stack\n";
+        }
+    }
+
+    void pop() {
+        if (top < 0) {
+            cout << "Stack Underflow\n";
+        } else {
+            cout << arr[top--] << " popped from stack\n";
+        }
+    }
+
+    void view() {
+        if (top < 0) {
+            cout << "Stack is empty\n";
+        } else {
+            cout << "Stack elements: ";
+            for (int i = 0; i <= top; i++) {
+                cout << arr[i] << " ";
+            }
+            cout << endl;
+        }
+    }
+};
+
+int main() {
+    Stack stack;
+    int choice, value;
+
+    do {
+        cout << "\nStack Operations:\n";
+        cout << "1. Push\n";
+        cout << "2. Pop\n";
+        cout << "3. View\n";
+        cout << "4. Quit\n";
+        cout << "Enter your choice: ";
+        cin >> choice;
+
+        switch (choice) {
+            case 1:
+                cout << "Enter value to push: ";
+                cin >> value;
+                stack.push(value);
+                break;
+            case 2:
+                stack.pop();
+                break;
+            case 3:
+                stack.view();
+                break;
+            case 4:
+                cout << "Exiting...\n";
+                break;
+            default:
+                cout << "Invalid choice\n";
+        }
+    } while (choice != 4);
+
+    return 0;
+}
